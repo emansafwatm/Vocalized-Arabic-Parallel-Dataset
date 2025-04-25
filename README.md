@@ -22,3 +22,6 @@ By combining high-quality semantic alignment with detailed vocalization variants
 This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0).
 
 [Link Text]([https://creativecommons.org/licenses/by-nc-nd/4.0/]) 
+
+## The corpus can be accessed upon request.
+If you would want to share the corpus with us, please send us an email at:  [emansafwatm@gmail.com](mailto:emansafwatm@gmail.comm)
