@@ -21,4 +21,4 @@ By combining high-quality semantic alignment with detailed vocalization variants
  
 This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0).
 
-[CC BY-NC-ND 4.0]([http://example.com](https://creativecommons.org/licenses/by-nc-nd/4.0/)) 
+[Link Text]([https://creativecommons.org/licenses/by-nc-nd/4.0/]) 
