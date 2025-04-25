@@ -5,10 +5,10 @@ What sets this corpus apart is that it was constructed by measuring semantic sim
 
 The Arabic side of the corpus is available in three versions:
 
-Nonvocalized Arabic – Standard Arabic text without diacritical marks, representing the common form used in most modern writing.
+**- Nonvocalized Arabic – ** Standard Arabic text without diacritical marks, representing the common form used in most modern writing.
 
-Fully Vocalized Arabic – Contains all diacritical marks (harakāt), offering complete phonological and grammatical detail.
+** - Fully Vocalized Arabic – ** Contains all diacritical marks (harakāt), offering complete phonological and grammatical detail.
 
-Partially Vocalized Arabic – Includes all diacritics except the final short vowel mark (ʾiʿrāb), which indicates the grammatical function of a word in a sentence. Since this final mark does not affect the word’s core meaning, its omission allows for a balance between phonological information and syntactic neutrality.
+** - Partially Vocalized Arabic – ** Includes all diacritics except the final short vowel mark (ʾiʿrāb), which indicates the grammatical function of a word in a sentence. Since this final mark does not affect the word’s core meaning, its omission allows for a balance between phonological information and syntactic neutrality.
 
 By combining high-quality semantic alignment with detailed vocalization variants, this corpus offers a valuable and flexible resource for developing and evaluating Arabic-English translation systems, especially those focused on disambiguation, morphological analysis, and context-aware translation.
