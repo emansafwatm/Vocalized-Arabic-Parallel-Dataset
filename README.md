@@ -1,5 +1,4 @@
 # Vocalized-Arabic-Parallel-Dataset
-📄 [https://arxiv.org/abs/1234.56789](https://ieeexplore.ieee.org/document/11520015)]
 The Vocalized Arabic–English Parallel Corpus is a high-quality linguistic resource designed to support advanced research in machine translation and natural language processing. It contains 584,284 aligned sentence pairs in Arabic and English, carefully filtered to ensure semantic and linguistic accuracy.
 
 What sets this corpus apart is that it was constructed by measuring semantic similarity between Arabic and English sentence pairs using a multilingual Sentence-BERT (SBERT) transformer model. Each sentence pair was evaluated by the model, and only those with a semantic similarity score between 0.70 and 0.99 were retained, ensuring high semantic alignment across languages.
@@ -36,4 +35,4 @@ If you use this work, please cite:
   year={2026}
 }
 
-Paper: [https://doi.org/10.xxxx/xxxxx](https://ieeexplore.ieee.org/document/11520015)]
+Paper:[https://arxiv.org/abs/1234.56789](https://ieeexplore.ieee.org/document/11520015)]
