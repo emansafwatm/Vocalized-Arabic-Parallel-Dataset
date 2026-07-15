@@ -35,4 +35,4 @@ If you use this work, please cite:
   year={2026}
 }
 
-Paper: https://arxiv.org/abs/1234.56789](https://ieeexplore.ieee.org/document/11520015)
+Paper: https://ieeexplore.ieee.org/document/11520015)
