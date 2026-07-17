@@ -1,11 +1,12 @@
 cff-version: 1.2.0
-message: "Please cite this repository and the associated paper when using the corpus or preprocessing code."
+message: "If you use this dataset or preprocessing code, please cite the associated paper listed under preferred-citation."
 title: "Vocalized Arabic-English Parallel Dataset"
 type: dataset
 authors:
   - family-names: "Khater"
     given-names: "Eman"
 repository-code: "https://github.com/emansafwatm/Vocalized-Arabic-Parallel-Dataset"
+url: "https://github.com/emansafwatm/Vocalized-Arabic-Parallel-Dataset"
 version: 1.0.0
 keywords:
   - Arabic
@@ -13,3 +14,27 @@ keywords:
   - vocalization
   - machine translation
   - parallel corpus
+
+preferred-citation:
+  type: conference-paper
+  authors:
+    - family-names: "Khater"
+      given-names: "Eman"
+    - family-names: "Elemam"
+      given-names: "Mohamed"
+    - family-names: "Aborezka"
+      given-names: "Mohamed"
+    - family-names: "Mahar"
+      given-names: "Khaled"
+  title: "Vocalized Arabic-English Parallel Corpus: A High-Quality Resource for Machine Translation and Diacritization"
+  collection-title: "2025 35th International Conference on Computer Theory and Applications (ICCTA)"
+  conference:
+    name: "2025 35th International Conference on Computer Theory and Applications (ICCTA)"
+  publisher:
+    name: "IEEE"
+  year: 2025
+  month: 11
+  start: 359
+  end: 364
+  doi: 10.1109/ICCTA68914.2025.11520015
+  url: "https://ieeexplore.ieee.org/document/11520015"
