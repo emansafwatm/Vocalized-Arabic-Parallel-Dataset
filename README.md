@@ -178,4 +178,22 @@ Do not commit or redistribute the full corpus until the licensing and redistribu
 
 ## Citation
 
-Use `CITATION.cff` to cite this repository. Also cite the source corpora, Sentence-BERT, the multilingual MiniLM model, and Mishkal as appropriate for the specific experiment.
+If you use this dataset or preprocessing pipeline, please cite the associated paper:
+
+```bibtex
+@inproceedings{khater2025vocalized,
+  title     = {Vocalized Arabic-English Parallel Corpus: A High-Quality Resource for Machine Translation and Diacritization},
+  author    = {Khater, Eman and Elemam, Mohamed and Aborezka, Mohamed and Mahar, Khaled},
+  booktitle = {2025 35th International Conference on Computer Theory and Applications (ICCTA)},
+  pages     = {359--364},
+  year      = {2025},
+  publisher = {IEEE},
+  doi       = {10.1109/ICCTA68914.2025.11520015}
+}
+```
+
+Paper: [IEEE Xplore](https://ieeexplore.ieee.org/document/11520015)
+
+GitHub can also generate citation formats automatically from the repository's `CITATION.cff` file.
+
+Please additionally cite the source corpus, Sentence-BERT model, multilingual MiniLM model, and Mishkal when applicable to the specific experiment.
