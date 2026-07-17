@@ -1,38 +1,181 @@
-# Vocalized-Arabic-Parallel-Dataset
-The Vocalized Arabic–English Parallel Corpus is a high-quality linguistic resource designed to support advanced research in machine translation and natural language processing. It contains 584,284 aligned sentence pairs in Arabic and English, carefully filtered to ensure semantic and linguistic accuracy.
+# Vocalized Arabic-English Parallel Dataset
 
-What sets this corpus apart is that it was constructed by measuring semantic similarity between Arabic and English sentence pairs using a multilingual Sentence-BERT (SBERT) transformer model. Each sentence pair was evaluated by the model, and only those with a semantic similarity score between 0.70 and 0.99 were retained, ensuring high semantic alignment across languages.
+A reproducible preprocessing pipeline for constructing an Arabic-English parallel corpus with **nonvocalized**, **fully vocalized**, and **partially vocalized** Arabic variants.
 
-The Arabic side of the corpus is available in three versions:
+The current corpus contains **584,284 aligned sentence pairs** selected through semantic filtering. The code in this repository documents the filtering and Arabic vocalization workflow so that the methodology can be inspected, reproduced, and extended.
 
-- **Nonvocalized Arabic** – Standard Arabic text without diacritical marks, representing the common form used in most modern writing.
+## Dataset variants
 
-- **Fully Vocalized Arabic** – Contains all diacritical marks (harakāt), offering complete phonological and grammatical detail.
+Each retained English sentence is aligned with three Arabic representations:
 
-- **Partially Vocalized Arabic** – Includes all diacritics except the final short vowel mark (ʾiʿrāb), which indicates the grammatical function of a word in a sentence. Since this final mark does not affect the word’s core meaning, its omission allows for a balance between phonological information and syntactic neutrality.
+- **Nonvocalized Arabic**: standard Arabic text without diacritics.
+- **Fully vocalized Arabic**: Arabic text vocalized with Mishkal.
+- **Partially vocalized Arabic**: internal diacritics are retained, while word-final inflectional marks are removed. Terminal shadda is preserved.
 
-By combining high-quality semantic alignment with detailed vocalization variants, this corpus offers a valuable and flexible resource for developing and evaluating Arabic-English translation systems, especially those focused on disambiguation, morphological analysis, and context-aware translation.
+## Source data and processing
 
-|                        English                              |           Arabic         |
-|-------------------------------------------------------------|--------------------------|
-| I would like to give her this necklace myself.              | أَوَد أَن أُعْطِيهَا هَذَا الْعُقْد بِنَفْسِي     |
-| Over the past decade and a half, the Chinese leadership has been <br> keen to refine and maintain the momentum created by <br> the Deng model of state-led development, which was <br> introduced after the Heavenly Peace Square protests        |عَلَى مَدَى الْعِقْد وَ نِصْف الْعِقْد الْمَاضِي حَرَصَت <br> الْقِيَادَة الصِّينِيَّة عَلَى صَقْل الزَّخَمِ الَّذِي أَوَجَده نَمُوذَج <br> دينج لِلتَّنْمِيَة الَّتِي تَقُودَهَا الدَّوْلَة وَ الْحِفَاظ عَلَيْه وَ الَّذِي تَمّ تَقْدِيمَه بَعْدَ اِحْتِجَاجَات مَيْدَان السَّلَاَم السَّمَاوِيّ|              
-|There were some uncertainties in the <br> beginning during the RFP and the contract agreement phase to reach an agreement, <br> but now there are no uncertainties regarding the execution of <br> the contract                                               | كانت هُنَاكَ بَعْض الشُّكُوك فِي الْبِدَايَة خِلَالَ مَرْحَلَة  <br> طَلَب تَقْديم الْعُرُوض  <br> وَ مَرْحَلَة الْاِتِّفَاق عَلَى الْعَقْد لِلتَّوَصُّل إِلَى اِتِّفَاق وَ لَكِنَّ الْآنَ لَا تُوجَد شُكُوك بِشَأْن تَنْفِيذ الْعَقْد|
- 
-This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License 
-(CC BY-NC-ND 4.0). (https://creativecommons.org/licenses/by-nc-nd/4.0/) 
+The pipeline starts from [`ymoslem/UN-Arabic-English-Filtered`](https://huggingface.co/datasets/ymoslem/UN-Arabic-English-Filtered), an Arabic-English dataset derived from MultiUN and UN Parallel Corpus resources. The source dataset card identifies `text_en` and `text_ar` as the aligned columns.
 
-## The corpus can be accessed upon request.
-If you would want to share the corpus with us, please send us an email at:  [emansafwatm@gmail.com](mailto:emansafwatm@gmail.comm)
+Semantic similarity is calculated with [`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2). The default public script retains sentence pairs with cosine similarity from **0.70 through 0.99**, inclusive. Thresholds are command-line parameters and are recorded in the run summary.
+
+Arabic vocalization is generated with [`mishkal`](https://github.com/linuxscout/mishkal), a rule-based Arabic vocalization system.
+
+## Repository structure
+
+```text
+.
+├── notebooks/
+│   ├── Filtering.ipynb
+│   ├── Mishkal.ipynb
+│   └── Tashkeel.ipynb
+├── scripts/
+│   ├── filter_parallel_corpus.py
+│   ├── vocalize_with_mishkal.py
+│   └── create_partial_vocalization.py
+├── tests/
+│   └── test_arabic_diacritics.py
+├── docs/
+│   └── SUPERVISOR_REVIEW.md
+├── data/sample/sample_pairs.tsv
+├── requirements.txt
+└── CITATION.cff
+```
+
+The notebooks provide readable demonstrations. The scripts contain the reusable and auditable implementation.
+
+## Installation
+
+Python 3.10 or later is recommended.
+
+```bash
+python -m venv .venv
+```
+
+Linux/macOS:
+
+```bash
+source .venv/bin/activate
+```
+
+Windows PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+## 1. Filter the parallel corpus
+
+A small validation run:
+
+```bash
+python scripts/filter_parallel_corpus.py \
+  --limit 1000 \
+  --output-dir data/processed/filter_demo \
+  --overwrite
+```
+
+Full run:
+
+```bash
+python scripts/filter_parallel_corpus.py \
+  --dataset-name ymoslem/UN-Arabic-English-Filtered \
+  --split train \
+  --min-score 0.70 \
+  --max-score 0.99 \
+  --batch-size 128 \
+  --encode-batch-size 64 \
+  --output-dir data/processed/filter_full \
+  --overwrite
+```
+
+For exact experimental reproducibility, also pass the source revision used in the original run:
+
+```bash
+--dataset-revision <HUGGING_FACE_COMMIT_HASH>
+```
+
+Outputs:
+
+- `accepted_pairs.tsv`
+- `rejected_pairs.tsv`
+- `processing_errors.jsonl`
+- `filtering_summary.json`
+- `deduplication.sqlite3`
+
+The filter uses streaming mode by default so the complete source split is not loaded into a pandas DataFrame. Exact duplicate detection is disk-backed, and embedding inference is batched.
+
+## 2. Generate fully vocalized Arabic
+
+```bash
+python scripts/vocalize_with_mishkal.py \
+  --input data/processed/filter_full/accepted_pairs.tsv \
+  --output data/processed/vocalized_pairs.tsv \
+  --overwrite
+```
+
+The output preserves all original columns and adds `arabic_vocalized`. Failures are written to a separate JSONL file instead of being silently ignored.
+
+## 3. Generate partially vocalized Arabic
+
+```bash
+python scripts/create_partial_vocalization.py \
+  --input data/processed/vocalized_pairs.tsv \
+  --output data/processed/final_parallel_corpus.tsv \
+  --overwrite
+```
+
+The output adds `arabic_partially_vocalized`.
+
+Example:
+
+```text
+Fully vocalized:    الطَّالِبُ مُجْتَهِدٌ
+Partially vocalized: الطَّالِب مُجْتَهِد
+```
+
+## Testing
+
+```bash
+pytest -q
+```
+
+The tests verify that the partial-vocalization step removes final vowel/tanween marks, preserves internal diacritics, preserves terminal shadda, and does not alter non-Arabic tokens.
+
+## Reproducibility and quality controls
+
+- UTF-8 TSV is used to preserve sentence alignment safely.
+- Existing outputs are not overwritten unless `--overwrite` is supplied.
+- Empty rows, duplicates, rejected scores, and processing failures are counted separately.
+- Filtering parameters, timestamps, package versions, and runtime environment are saved in JSON summaries.
+- The filtering stage does not silently skip failed batches.
+- The repository excludes generated corpus files by default to avoid unintentionally publishing restricted or very large data.
+
+## Limitations
+
+Semantic similarity is an automatic quality-control signal and does not guarantee that every retained pair is a perfect translation. Mishkal is a rule-based vocalization system and may produce lexical, morphological, or syntactic errors. Human evaluation is recommended for benchmark subsets and high-stakes downstream use.
+
+The exact number of retained pairs may change when the source dataset revision, sentence-transformer version, preprocessing rules, or score thresholds change.
+
+## Data access
+
+The complete processed corpus is available upon reasonable research request. Contact: `emansafwatm@gmail.com`.
+
+Do not commit or redistribute the full corpus until the licensing and redistribution conditions of the source datasets have been verified.
+
+## Licensing
+
+- The repository currently includes a `CC0-1.0` license for the original repository materials.
+- The source dataset is listed as `CC BY 4.0` on its Hugging Face dataset card.
+- Mishkal is distributed under the GNU GPL.
+- The processed corpus may also be subject to source-corpus terms. Verify redistribution rights before making the full data public.
+
 ## Citation
 
-If you use this work, please cite:
-
-@article{author2026paper,
-  title={Vocalized-Arabic-Parallel-Dataset},
-  author={Eman Khater; Mohamed Elemam; Mohamed Aborezka; Khaled Mahar},
-  Published in: 2025 35th International Conference on Computer Theory and Applications (ICCTA),
-  year={2026}
-}
-
-Paper: https://ieeexplore.ieee.org/document/11520015)
+Use `CITATION.cff` to cite this repository. Also cite the source corpora, Sentence-BERT, the multilingual MiniLM model, and Mishkal as appropriate for the specific experiment.

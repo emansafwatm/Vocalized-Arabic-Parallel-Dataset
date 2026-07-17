@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "Please cite this repository and the associated paper when using the corpus or preprocessing code."
+title: "Vocalized Arabic-English Parallel Dataset"
+type: dataset
+authors:
+  - family-names: "Khater"
+    given-names: "Eman"
+repository-code: "https://github.com/emansafwatm/Vocalized-Arabic-Parallel-Dataset"
+version: 1.0.0
+keywords:
+  - Arabic
+  - diacritization
+  - vocalization
+  - machine translation
+  - parallel corpus

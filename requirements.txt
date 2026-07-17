@@ -1,0 +1,7 @@
+# Python 3.10+ recommended
+datasets>=4.0,<6.0
+sentence-transformers>=4.0,<6.0
+numpy>=1.26,<3.0
+tqdm>=4.66,<5.0
+mishkal==0.4.1
+pytest>=8.0,<10.0
