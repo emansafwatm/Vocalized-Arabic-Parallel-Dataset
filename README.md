@@ -1,4 +1,6 @@
-# Vocalized Arabic-English Parallel Dataset
+Vocalized Arabic-English Parallel Dataset
+
+[![Tests](https://github.com/emansafwatm/Vocalized-Arabic-Parallel-Dataset/actions/workflows/tests.yml/badge.svg)](https://github.com/emansafwatm/Vocalized-Arabic-Parallel-Dataset/actions/workflows/tests.yml)
 
 A reproducible preprocessing pipeline for constructing an Arabic-English parallel corpus with **nonvocalized**, **fully vocalized**, and **partially vocalized** Arabic variants.
 
