@@ -1,0 +1,3 @@
+source_index	text_en	text_ar	similarity	decision_reason
+0	The student is diligent.	الطالب مجتهد	0.912345	within_similarity_range
+1	The sun rises in the morning.	تطلع الشمس صباحا	0.901234	within_similarity_range
