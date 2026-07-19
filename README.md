@@ -173,10 +173,11 @@ Do not commit or redistribute the full corpus until the licensing and redistribu
 
 ## Licensing
 
-- The repository currently includes a `CC0-1.0` license for the original repository materials.
+- The repository currently includes a `CC0-1.0` license for original repository materials created by the authors.
 - The source dataset is listed as `CC BY 4.0` on its Hugging Face dataset card.
 - Mishkal is distributed under the GNU GPL.
-- The processed corpus may also be subject to source-corpus terms. Verify redistribution rights before making the full data public.
+- The processed corpus may remain subject to the source corpus’s license and attribution requirements.
+- Verify redistribution rights before making the full processed dataset public.
 
 ## Citation
 
